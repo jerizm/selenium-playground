@@ -1,11 +1,11 @@
 flights:
   - {
-      orig: 'New York, NY (NYC - All Airports)',
-      dest: 'Maui, HI (OGG)',
-      date: '09/29/2015'
+      orig: 'NYC',
+      dest: 'OGG',
+      date: '9/29/2015'
     }
   - {
-      orig: 'OGG',
-      dest: 'HNL',
-      date: '10/04/2015'
+      orig: 'HNL',
+      dest: 'NYC',
+      date: '10/11/2015'
     }
