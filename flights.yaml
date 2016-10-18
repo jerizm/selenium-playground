@@ -1,8 +1,8 @@
 flights:
   - {
-      orig: 'NYC',
-      dest: 'OGG',
-      date: '9/29/2015'
+      orig: 'SFO',
+      dest: 'AKL',
+      date: '2017-03-15'
     }
   - {
       orig: 'HNL',

@@ -1,0 +1,8 @@
+version: '2'
+services:
+  selenium:
+    image: selenium/standalone-firefox:3.0.0-dubnium
+    ports:
+      - "4444:4444"
+    volumes:
+      - /dev/shm:/dev/shm

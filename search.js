@@ -8,24 +8,22 @@ var config = yaml.safeLoad(fs.readFileSync('flights.yaml', 'utf8'));
 var flight = config.flights[argv.i];
 console.log(flight);
 var driver = new webdriver.Builder()
-   .usingServer('http://redis:4444/wd/hub')
+   .usingServer('http://localhost:4444/wd/hub')
    .withCapabilities(webdriver.Capabilities.firefox()).
    build();
 
-driver.get('http://www.united.com/web/en-US/default.aspx?root=1');
 
-driver.findElement(webdriver.By.id('ctl00_ContentInfo_Booking1_rdoSearchType2')).click();
-driver.findElement(webdriver.By.name('ctl00$ContentInfo$Booking1$Origin$txtOrigin')).sendKeys(flight.orig);
-driver.findElement(webdriver.By.name('ctl00$ContentInfo$Booking1$Destination$txtDestination')).sendKeys(flight.dest);
-driver.findElement(webdriver.By.id('ctl00_ContentInfo_Booking1_SearchBy_rdosearchby3')).click();
-driver.findElement(webdriver.By.id('ctl00_ContentInfo_Booking1_DepDateTime_Depdate_txtDptDate')).click();
-driver.findElement(webdriver.By.id('ctl00_ContentInfo_Booking1_DepDateTime_Depdate_txtDptDate')).sendKeys(flight.date);
-driver.findElement(webdriver.By.name('ctl00$ContentInfo$Booking1$btnSearchFlight')).click();
-(function(name){
-  driver.takeScreenshot().then(function(data) {
-    writeScreenshot(data, name + '.png');
-  });
-})(flight.dest);
+var url = `https://www.united.com/ual/en/us/flight-search/book-a-flight/results/awd?f=${flight.orig}&t=${flight.dest}&d=${flight.date}&tt=1&st=bestmatches&at=1&rm=1&cbm=-1&cbm2=-1&fa=1&fm2=${flight.date}&co=1&sc=7&px=1&taxng=1&idx=1`;
+driver.get(url);
+
+driver.wait(function() {
+  (function(name){
+    driver.takeScreenshot().then(function(data) {
+      writeScreenshot(data, name + '.png');
+    });
+  })(flight.dest);
+  return true;
+}, 8000);
 driver.quit();
 
 function writeScreenshot(data, name) {
