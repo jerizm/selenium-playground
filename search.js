@@ -19,7 +19,8 @@ var driver = new webdriver.Builder()
 var url = `https://www.united.com/ual/en/us/flight-search/book-a-flight/results/awd?f=${flight.orig}&t=${flight.dest}&d=${flight.date}&tt=1&st=bestmatches&at=1&rm=1&cbm=-1&cbm2=-1&fa=1&fm2=${flight.date}&co=1&sc=7&px=1&taxng=1&idx=1`;
 driver.get(url);
 
-driver.wait(until.elementLocated(by.id('cal-container')), 10000, 'Could not locate the child element within the time specified');
+// cabin-option-two
+driver.wait(until.elementLocated(by.css('a.cabin-option-two')), 10000, 'Could not locate the child element within the time specified');
 
 (function(name){
   driver.takeScreenshot().then(function(data) {
