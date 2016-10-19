@@ -2,7 +2,8 @@ flights:
   - {
       orig: 'SFO',
       dest: 'AKL',
-      date: '2017-03-15'
+      date: '2017-03-15',
+      airline: 'united'
     }
   - {
       orig: 'HNL',
