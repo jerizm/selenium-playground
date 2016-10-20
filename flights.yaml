@@ -6,7 +6,8 @@ flights:
       airline: 'united'
     }
   - {
-      orig: 'HNL',
-      dest: 'NYC',
-      date: '10/11/2015'
+      orig: 'SFO',
+      dest: 'AKL',
+      date: '2017-05-15',
+      airline: 'united'
     }

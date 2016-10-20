@@ -1,15 +1,14 @@
-var webdriver = require('selenium-webdriver'),
-  yaml = require('js-yaml'),
-  fs   = require('fs'),
-  argv = require('minimist')(process.argv.slice(2));
+const yaml = require('js-yaml');
+const fs = require('fs');
 
-var airlines = require('./airlines');
-var config = yaml.safeLoad(fs.readFileSync('flights.yaml', 'utf8'));
-var flight = config.flights[argv.i];
-console.log(flight);
-var driver = new webdriver.Builder()
-  .usingServer('http://localhost:4444/wd/hub')
-  .withCapabilities(webdriver.Capabilities.firefox()).
-  build();
+const co = require('co');
 
-airlines[flight.airline](flight, driver);
+const airlines = require('./airlines');
+const config = yaml.safeLoad(fs.readFileSync('flights.yaml', 'utf8'));
+
+co.wrap(function * flights() {
+  for (const flight of config.flights) {
+    yield airlines[flight.airline](flight);
+  }
+})();
+
