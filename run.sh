@@ -1,6 +1,6 @@
 #!/bin/sh
 
 while true; do
-  node search.js -i 0
+  node search.js
   sleep 600
 done
